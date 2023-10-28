@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # @hero-js/context
 
 A utility module for managing contextual data within your Node.js applications.
@@ -91,7 +90,3 @@ For a history of changes to this module, see the [CHANGELOG](https://github.com/
 ## Support
 
 If you have any questions or encounter issues, please open a GitHub issue.
-=======
-# context
-A utility module for managing contextual data within your Node.js applications.
->>>>>>> 4a15f6595bedeb9bf5e124dc0a4497f39fde5792
