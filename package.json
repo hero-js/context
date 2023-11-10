@@ -6,8 +6,8 @@
   "types": "./dist/index.d.ts",
   "scripts": {
     "test": "jest",
-    "build": "rm -rf ./dist && tsc && cp -r ./dist/src/. ./dist && rm -rf ./dist/src",
-    "win-build": "rmdir /s /q .\\dist && tsc && xcopy /s /e /Y .\\dist\\src dist && rmdir /s /q .\\dist\\src",
+    "build": "rm -rf ./dist & tsc && cp -r ./dist/src/. ./dist && rm -rf ./dist/src",
+    "win-build": "rmdir /s /q .\\dist & tsc && xcopy /s /e /Y .\\dist\\src dist && rmdir /s /q .\\dist\\src",
     "generate-doc": "typedoc"
   },
   "repository": {

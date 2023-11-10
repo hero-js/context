@@ -76,24 +76,24 @@ export default class Context {
    * @template T - The expected type of the value.
    * @param {string} key - The key associated with the value.
    * @param {IGetContextData<T>} [options] - Options for data retrieval.
-   * @returns {T|false} - The retrieved value, or the default value if specified, or `false` if invalid.
+   * @returns {T|undefined} - The retrieved value, or the default value if specified, or `false` if invalid.
    */
   public get<T>(
     key: string,
     options: IGetContextData<T> = {}
-  ): T | false | undefined {
+  ): T | undefined {
     const { defaultValue, invalidValues = [], orInvalidValues = [] } = options;
     const value: T = this.getContext[key];
 
     let test = this.testInvalidValue(value, orInvalidValues);
 
-    if (test) return defaultValue ?? false;
+    if (test) return defaultValue;
 
     if (invalidValues.length === 0) return value ?? defaultValue;
 
     test = this.testInvalidValue(value, invalidValues);
 
-    return test ? defaultValue ?? false : value;
+    return test ? defaultValue : value;
   }
 
   /**
@@ -104,10 +104,10 @@ export default class Context {
    * @returns {T} - The retrieved value.
    * @throws {Error} - If the value is not found in the context.
    */
-  getOrThrow<T extends string = string>(
+  getOrThrow<T = any>(
     key: string,
     options: IInvalid = {}
-  ): T | false {
+  ): T {
     const {
       orInvalidValues = [],
       invalidValues = [],
@@ -115,7 +115,7 @@ export default class Context {
     } = options;
     const value = this.get<T>(key, options);
 
-    if (value === undefined) throw this.throwError(key);
+    if (!value) throw this.throwError(key);
 
     const test = this.testInvalidValue(
       value,
@@ -138,7 +138,7 @@ export default class Context {
   ): number | undefined {
     const value = this.get(key, options);
 
-    if (value === undefined) return value;
+    if (!value) return value;
 
     return parseInt(String(value), 10);
   }
