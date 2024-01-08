@@ -1,6 +1,6 @@
 {
   "name": "@hero-js/context",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A utility module for managing contextual data within your Node.js applications.",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -8,6 +8,8 @@
     "test": "jest",
     "build": "rm -rf ./dist & tsc && cp -r ./dist/src/. ./dist && rm -rf ./dist/src",
     "win-build": "rmdir /s /q .\\dist & tsc && xcopy /s /e /Y .\\dist\\src dist && rmdir /s /q .\\dist\\src",
+    "l-publish": "npm run build && npm publish --access=public",
+    "win-publish": "npm run win-build && npm --access=public publish",
     "generate-doc": "typedoc"
   },
   "repository": {
